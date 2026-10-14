@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>COMP6013 Week 12 · Secure System Design & Ethics</title>
+<meta name="theme-color" content="#eef4ff">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="scrollProgress"></div>
+
+<header class="topbar">
+  <a class="brand" href="#top">
+    <span class="brand-mark">W12</span>
+    <span><b>COMP6013</b><small>Secure System Design & Ethical Responsibilities</small></span>
+  </a>
+  <nav>
+    <a href="#cia">CIA</a>
+    <a href="#depth">Defense</a>
+    <a href="#model">Threat Model</a>
+    <a href="#equifax">Equifax</a>
+    <a href="#privacy">Privacy</a>
+    <a href="#usability">Usability</a>
+    <a href="#bias">AI Bias</a>
+    <a href="#accountability">Accountability</a>
+  </nav>
+  <div class="top-actions">
+    <button id="soundToggle" class="sound-btn" aria-pressed="true">🔊 Sound</button>
+    <div class="xp"><span>LAB XP</span><b id="xp">0</b></div>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow">WEEK 12 · SECURE SYSTEM DESIGN + ETHICS</div>
+    <h1>BUILD IT<br><span>SECURE.</span><br>BUILD IT<br><em>RESPONSIBLY.</em></h1>
+    <p>Modern security is not only about stopping attackers. Good systems protect confidentiality, integrity and availability while also respecting privacy, fairness, usability and accountability.</p>
+    <div class="hero-actions">
+      <button class="primary" data-jump="#cia">Start the lab</button>
+      <button class="secondary" data-jump="#final">Final challenge</button>
+    </div>
+    <div class="hero-stats">
+      <article><b>3</b><span>CIA goals</span></article>
+      <article><b>4</b><span>threat-model steps</span></article>
+      <article><b>4</b><span>ethical challenges</span></article>
+      <article><b>8</b><span>game missions</span></article>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="core-orbit">
+      <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div>
+      <div class="secure-core"><span>SECURE</span><b>SYSTEM</b><small>design + ethics</small></div>
+      <div class="sat s-c"><b>C</b><span>Confidentiality</span></div>
+      <div class="sat s-i"><b>I</b><span>Integrity</span></div>
+      <div class="sat s-a"><b>A</b><span>Availability</span></div>
+      <div class="sat s-e"><b>⚖</b><span>Ethics</span></div>
+    </div>
+    <div class="hero-note"><b>DESIGN RULE</b><span>Security controls protect systems. Ethical responsibility protects people.</span></div>
+  </div>
+</section>
+
+<section class="zone alt" id="cia">
+  <div class="zone-head">
+    <div><span class="zone-no">01</span><div class="eyebrow">CIA TRIAD</div><h2>Protect the secret. Protect the truth. Keep it running.</h2></div>
+    <p>The CIA triad is the core framework: confidentiality protects sensitive data, integrity protects accuracy, and availability keeps systems accessible when needed.</p>
+  </div>
+
+  <div class="cia-explain">
+    <article><span>C</span><b>Confidentiality</b><p>Only authorised people should see sensitive information.</p><small>Example: your banking password should not be visible to strangers.</small></article>
+    <article><span>I</span><b>Integrity</b><p>Information should remain correct and unaltered.</p><small>Example: nobody should secretly change your exam mark from 80 to 20.</small></article>
+    <article><span>A</span><b>Availability</b><p>Systems should be accessible when legitimate users need them.</p><small>Example: an emergency hospital system cannot simply be offline.</small></article>
+  </div>
+
+  <div class="arcade game-shell">
+    <div class="game-head">
+      <div><span>GAME 1 · CIA DEFENDER</span><h3>Stop each attack before it hits the system.</h3></div>
+      <div class="hud"><span>Score <b id="ciaScore">0</b></span><span>Lives <b id="ciaLives">❤❤❤</b></span></div>
+    </div>
+    <div class="arcade-board" id="ciaBoard">
+      <div class="system-line"><span>PROTECTED SYSTEM</span></div>
+      <div class="attack-card" id="attackCard"><b>Press START</b><span>Classify each attack as C, I or A.</span></div>
+      <div class="timer-track"><i id="ciaTimer"></i></div>
+      <div class="lane-buttons">
+        <button data-cia="C"><b>C</b><span>Confidentiality</span></button>
+        <button data-cia="I"><b>I</b><span>Integrity</span></button>
+        <button data-cia="A"><b>A</b><span>Availability</span></button>
+      </div>
+      <button id="startCIA" class="start-game">Start mission</button>
+    </div>
+    <div id="ciaFeedback" class="feedback">Tip: think about what the attacker is trying to harm.</div>
+  </div>
+
+  <div class="deep-grid">
+    <button class="flip"><div class="flip-in"><div class="face front"><small>MORE DETAIL</small><h3>Confidentiality</h3><p>Protect sensitive information from unauthorised disclosure.</p><em>Flip ↻</em></div><div class="face back"><h3>Confidentiality in practice</h3><ul><li>Access control limits who can see sensitive data.</li><li>Encryption protects information if it is intercepted or stolen.</li><li>Privacy and confidentiality overlap, but they are not identical.</li><li>A data leak is primarily a confidentiality failure.</li></ul></div></div></button>
+    <button class="flip"><div class="flip-in"><div class="face front"><small>MORE DETAIL</small><h3>Integrity</h3><p>Protect information from unauthorised modification.</p><em>Flip ↻</em></div><div class="face back"><h3>Integrity in practice</h3><ul><li>Hashes and signatures can reveal unauthorised changes.</li><li>Audit logs help show who changed what.</li><li>Incorrect medical or financial data can create serious consequences.</li><li>Tampering is an integrity failure even when nothing is stolen.</li></ul></div></div></button>
+    <button class="flip"><div class="flip-in"><div class="face front"><small>MORE DETAIL</small><h3>Availability</h3><p>Keep legitimate access working when it matters.</p><em>Flip ↻</em></div><div class="face back"><h3>Availability in practice</h3><ul><li>Redundancy reduces dependence on one component.</li><li>Backups and recovery plans support resilience.</li><li>Denial-of-service attacks target availability.</li><li>Security is weak if a protected system is never reachable when needed.</li></ul></div></div></button>
+  </div>
+</section>
+
+<section class="zone" id="depth">
+  <div class="zone-head">
+    <div><span class="zone-no">02</span><div class="eyebrow">DEFENSE IN DEPTH</div><h2>Never trust one wall to save the whole castle.</h2></div>
+    <p>Defense in depth uses multiple physical and digital layers. If one control fails, another layer can still slow, detect or stop the attack.</p>
+  </div>
+
+  <div class="depth-visual">
+    <div class="layer-ring l1"><span>PHYSICAL</span></div>
+    <div class="layer-ring l2"><span>NETWORK</span></div>
+    <div class="layer-ring l3"><span>IDENTITY</span></div>
+    <div class="layer-ring l4"><span>APPLICATION</span></div>
+    <div class="depth-core"><b>DATA</b><small>what we protect</small></div>
+  </div>
+
+  <div class="depth-game game-shell">
+    <div class="game-head"><div><span>GAME 2 · LAYER STACK</span><h3>Build enough defense to survive three attack waves.</h3></div><div class="hud"><span>Budget <b id="budget">10</b></span><span>Health <b id="depthHealth">100</b>%</span></div></div>
+    <div class="defense-shop" id="defenseShop"></div>
+    <div class="selected-defense" id="selectedDefense">No defenses purchased yet.</div>
+    <button id="runWaves" class="start-game">Run attack waves</button>
+    <div class="wave-log" id="waveLog"></div>
+  </div>
+
+  <div class="deep-grid">
+    <button class="flip"><div class="flip-in"><div class="face front"><small>MORE DETAIL</small><h3>Why layers?</h3><p>One control can fail. Layers reduce single points of failure.</p><em>Flip ↻</em></div><div class="face back"><h3>Defense in depth</h3><ul><li>Security should not depend on one firewall, one password or one physical lock.</li><li>Controls can be preventive, detective or corrective.</li><li>Physical and digital protection should work together.</li><li>Resilience improves when failure in one layer does not expose everything.</li></ul></div></div></button>
+    <button class="flip"><div class="flip-in"><div class="face front"><small>MORE DETAIL</small><h3>Real-world analogy</h3><p>Think airport security, not a single locked door.</p><em>Flip ↻</em></div><div class="face back"><h3>Airport analogy</h3><ul><li>Identity is checked.</li><li>Bags are screened.</li><li>Restricted areas require authorisation.</li><li>Cameras and staff monitor activity.</li><li>Multiple layers make one mistake less catastrophic.</li></ul></div></div></button>
+    <button class="flip"><div class="flip-in"><div class="face front"><small>MORE DETAIL</small><h3>Resilience</h3><p>Good design expects controls to fail sometimes.</p><em>Flip ↻</em></div><div class="face back"><h3>Design for failure</h3><ul><li>Security architecture should assume attackers may bypass individual controls.</li><li>Monitoring can detect what prevention misses.</li><li>Recovery limits damage after compromise.</li><li>The goal is not perfection; it is reduced likelihood and reduced impact.</li></ul></div></div></button>
+  </div>
+</section>
+
+<section class="zone alt" id="model">
+  <div class="zone-head">
+    <div><span class="zone-no">03</span><div class="eyebrow">THREAT MODELING</div><h2>Know what matters before deciding how to protect it.</h2></div>
+    <p>The lecture’s threat-model flow is straightforward: identify assets, identify threats, analyse vulnerabilities, then apply controls.</p>
+  </div>
+
+  <div class="model-flow">
+    <article><span>1</span><b>Assets</b><small>What has value?</small></article><i>→</i>
+    <article><span>2</span><b>Threats</b><small>Who or what could harm it?</small></article><i>→</i>
+    <article><span>3</span><b>Vulnerabilities</b><small>What weakness could be exploited?</small></article><i>→</i>
+    <article><span>4</span><b>Controls</b><small>What reduces the risk?</small></article>
+  </div>
+
+  <div class="threat-game game-shell">
+    <div class="game-head"><div><span>GAME 3 · THREAT MODEL BUILDER</span><h3 id="tmPrompt">Scenario: Online school portal</h3></div><div class="hud"><span>Stage <b id="tmStage">1/4</b></span></div></div>
+    <div class="scenario-card" id="tmScenario"></div>
+    <div class="tm-options" id="tmOptions"></div>
+    <div class="feedback" id="tmFeedback">Choose the item that belongs to the current threat-model stage.</div>
+  </div>
+
+  <div class="deep-grid">
+    <button class="flip"><div class="flip-in"><div class="face front"><small>MORE DETAIL</small><h3>Assets first</h3><p>Do not protect everything equally before knowing what matters most.</p><em>Flip ↻</em></div><div class="face back"><h3>Identify assets</h3><ul><li>Assets can be data, applications, credentials, services or physical systems.</li><li>Value can be financial, operational, legal or reputational.</li><li>High-value assets usually deserve stronger controls.</li><li>Clear asset identification prevents random security spending.</li></ul></div></div></button>
+    <button class="flip"><div class="flip-in"><div class="face front"><small>MORE DETAIL</small><h3>Threat vs vulnerability</h3><p>An attacker is not the same thing as a weakness.</p><em>Flip ↻</em></div><div class="face back"><h3>Keep the concepts separate</h3><ul><li>Threat: something that could cause harm.</li><li>Vulnerability: weakness that can be exploited.</li><li>A threat without a useful weakness may fail.</li><li>A weakness with no meaningful threat may be lower priority.</li></ul></div></div></button>
+    <button class="flip"><div class="flip-in"><div class="face front"><small>MORE DETAIL</small><h3>Controls</h3><p>Controls should target the identified risk.</p><em>Flip ↻</em></div><div class="face back"><h3>Apply controls</h3><ul><li>Controls can prevent, detect or support recovery.</li><li>Examples include MFA, patching, encryption, backups and monitoring.</li><li>The control should address the real weakness and likely threat.</li><li>Threat modeling is useful because it connects design decisions to risk.</li></ul></div></div></button>
+  </div>
+</section>
+
+<section class="zone" id="equifax">
+  <div class="zone-head">
+    <div><span class="zone-no">04</span><div class="eyebrow">CASE STUDY · EQUIFAX 2017</div><h2>A known patch existed. The breach still happened.</h2></div>
+    <p>The Equifax case shows how secure design also depends on operational discipline. The lecture highlights an unpatched Apache Struts vulnerability, 147 million affected users and a settlement exceeding $700 million.</p>
+  </div>
+
+  <div class="equifax-facts">
+    <article><span>TIMELINE</span><b>May–July 2017</b></article>
+    <article><span>IMPACT</span><b>147M users</b></article>
+    <article><span>ROOT ISSUE</span><b>Unpatched Apache Struts</b></article>
+    <article><span>COST</span><b>$700M+ settlement</b></article>
+  </div>
+
+  <div class="patch-game game-shell">
+    <div class="game-head"><div><span>GAME 4 · PATCH RACE</span><h3>Patch the vulnerable servers before the breach meter fills.</h3></div><div class="hud"><span>Patched <b id="patchedCount">0/8</b></span><span>Risk <b id="breachRisk">0</b>%</span></div></div>
+    <div class="server-grid" id="serverGrid"></div>
+    <button id="startPatchGame" class="start-game">Start patch race</button>
+    <div class="feedback" id="patchFeedback">Click vulnerable servers as they appear. Speed matters.</div>
+  </div>
+
+  <div class="lesson-callout"><b>Lesson:</b><span>A security fix that is never deployed protects nobody.</span></div>
+</section>
+
+<section class="zone alt" id="privacy">
+  <div class="zone-head">
+    <div><span class="zone-no">05</span><div class="eyebrow">ETHICAL CHALLENGE · DATA PRIVACY</div><h2>Just because we can collect data does not mean we should.</h2></div>
+    <p>Ethical privacy problems include over-collection, missing consent, tracking and surveillance, and organisational misuse of personal information.</p>
+  </div>
+
+  <div class="privacy-board">
+    <article><span>OVER-COLLECTION</span><b>Collect only what you genuinely need.</b><small>A weather app does not need your full contact list.</small></article>
+    <article><span>CONSENT</span><b>People should understand what they agree to.</b><small>A buried 40-page policy is not meaningful explanation.</small></article>
+    <article><span>TRACKING</span><b>Continuous monitoring changes the ethical risk.</b><small>Location histories can reveal home, work and routines.</small></article>
+    <article><span>MISUSE</span><b>Data collected for one purpose can be abused for another.</b><small>“We collected it legally” does not justify every later use.</small></article>
+  </div>
+
+  <div class="privacy-game game-shell">
+    <div class="game-head"><div><span>GAME 5 · CONSENT CHECK</span><h3 id="privacyPrompt">Choose the most ethical design.</h3></div><div class="hud"><span>Trust <b id="trustScore">100</b>%</span></div></div>
+    <div class="ethics-card" id="privacyScenario"></div>
+    <div class="ethics-options" id="privacyOptions"></div>
+    <div class="feedback" id="privacyFeedback"></div>
+  </div>
+
+  <div class="cambridge">
+    <div><span>FACEBOOK–CAMBRIDGE ANALYTICA · 2018</span><h3>87 million users impacted by data misuse without meaningful consent.</h3></div>
+    <p>The lecture uses this case to show that ethical failure can occur even when the central issue is not a classic malware attack. The problem was how personal data was accessed and used.</p>
+  </div>
+
+  <div class="deep-grid">
+    <button class="flip"><div class="flip-in"><div class="face front"><small>MORE DETAIL</small><h3>Consent</h3><p>Ethical collection requires more than a checkbox.</p><em>Flip ↻</em></div><div class="face back"><h3>Meaningful consent</h3><ul><li>Users should know what data is collected.</li><li>They should understand why it is collected.</li><li>Important consequences should not be hidden in vague language.</li><li>Consent should not be manipulated through dark patterns.</li></ul></div></div></button>
+    <button class="flip"><div class="flip-in"><div class="face front"><small>MORE DETAIL</small><h3>Surveillance</h3><p>More data can create more insight — and more risk.</p><em>Flip ↻</em></div><div class="face back"><h3>Tracking risk</h3><ul><li>Repeated location data can reveal daily routines.</li><li>Metadata can be sensitive even without message content.</li><li>Over-collection expands breach impact.</li><li>Privacy-aware design reduces unnecessary collection and retention.</li></ul></div></div></button>
+    <button class="flip"><div class="flip-in"><div class="face front"><small>MORE DETAIL</small><h3>Cambridge Analytica</h3><p>Security and ethics meet in how data is used.</p><em>Flip ↻</em></div><div class="face back"><h3>Case-study lesson</h3><ul><li>The scandal was revealed in March 2018.</li><li>The lecture cites 87 million users impacted.</li><li>The central ethical issue was misuse of data without consent.</li><li>The case triggered global reviews of privacy regulation.</li></ul></div></div></button>
+  </div>
+</section>
+
+<section class="zone" id="usability">
+  <div class="zone-head">
+    <div><span class="zone-no">06</span><div class="eyebrow">ETHICAL CHALLENGE · SECURITY VS USABILITY</div><h2>If security is painful, people create shortcuts.</h2></div>
+    <p>Strong controls can reduce convenience. Weak controls increase risk. Ethical secure design looks for a workable balance instead of forcing users into unsafe workarounds.</p>
+  </div>
+
+  <div class="balance-lab">
+    <div class="scale">
+      <div class="beam" id="balanceBeam"></div>
+      <div class="pan left"><b>SECURITY</b><span id="securityValue">70</span></div>
+      <div class="pan right"><b>USABILITY</b><span id="usabilityValue">70</span></div>
+    </div>
+    <div class="balance-controls">
+      <span>GAME 6 · DESIGN THE LOGIN</span>
+      <h3 id="loginScenario">Design login security for an online banking app.</h3>
+      <div id="loginOptions"></div>
+      <button id="testLogin" class="start-game">Test design</button>
+      <div class="feedback" id="loginFeedback">Pick the controls you think create the best balance.</div>
+    </div>
+  </div>
+
+  <div class="deep-grid">
+    <button class="flip"><div class="flip-in"><div class="face front"><small>MORE DETAIL</small><h3>Convenience pressure</h3><p>Users naturally prefer the easiest path.</p><em>Flip ↻</em></div><div class="face back"><h3>Why usability matters</h3><ul><li>Overly complex controls encourage workarounds.</li><li>Users may reuse weak passwords when requirements feel unreasonable.</li><li>Security controls should match the sensitivity of the task.</li><li>Good design makes safe behaviour easier than unsafe behaviour.</li></ul></div></div></button>
+    <button class="flip"><div class="flip-in"><div class="face front"><small>MORE DETAIL</small><h3>Password reality</h3><p>People often choose convenience under pressure.</p><em>Flip ↻</em></div><div class="face back"><h3>Human factors</h3><ul><li>Weak passwords remain common.</li><li>Excessive complexity can create predictable patterns or written-down passwords.</li><li>Password managers and MFA can improve practical security.</li><li>The goal is not maximum friction; it is appropriate protection.</li></ul></div></div></button>
+    <button class="flip"><div class="flip-in"><div class="face front"><small>MORE DETAIL</small><h3>Balance</h3><p>Security and user experience are design constraints, not enemies.</p><em>Flip ↻</em></div><div class="face back"><h3>Balanced design</h3><ul><li>High-risk operations deserve stronger verification.</li><li>Low-risk routine actions should remain efficient.</li><li>Context-aware controls can reduce unnecessary friction.</li><li>Usability failures can become security failures.</li></ul></div></div></button>
+  </div>
+</section>
+
+<section class="zone alt" id="bias">
+  <div class="zone-head">
+    <div><span class="zone-no">07</span><div class="eyebrow">ETHICAL CHALLENGE · AI + BIAS</div><h2>AI learns patterns from data — including unfair ones.</h2></div>
+    <p>Training data influences model outcomes. If the data or design is biased, automated decisions can become unfair, so ethical design must actively test for fairness.</p>
+  </div>
+
+  <div class="bias-demo">
+    <div class="dataset-box">
+      <span>TRAINING DATA</span>
+      <div class="dots" id="biasDots"></div>
+    </div>
+    <i>→</i>
+    <div class="model-box"><b>AI MODEL</b><span>learns from examples</span></div>
+    <i>→</i>
+    <div class="decision-box" id="decisionBox"><b>DECISIONS</b><span>fairness depends on the process</span></div>
+  </div>
+
+  <div class="bias-game game-shell">
+    <div class="game-head"><div><span>GAME 7 · FAIRNESS AUDIT</span><h3 id="biasPrompt">Which training setup is most likely to produce an unfair result?</h3></div><div class="hud"><span>Audit <b id="auditScore">0/4</b></span></div></div>
+    <div class="bias-options" id="biasOptions"></div>
+    <div class="feedback" id="biasFeedback"></div>
+  </div>
+
+  <div class="deep-grid">
+    <button class="flip"><div class="flip-in"><div class="face front"><small>MORE DETAIL</small><h3>Data shapes outcomes</h3><p>The model does not learn in a social vacuum.</p><em>Flip ↻</em></div><div class="face back"><h3>Bias in AI systems</h3><ul><li>Historical training data can contain historical inequality.</li><li>Under-represented groups may receive poorer model performance.</li><li>Proxy variables can reproduce sensitive distinctions indirectly.</li><li>Fairness must be tested rather than assumed.</li></ul></div></div></button>
+    <button class="flip"><div class="flip-in"><div class="face front"><small>MORE DETAIL</small><h3>Fair decisions</h3><p>High accuracy alone does not settle the ethical question.</p><em>Flip ↻</em></div><div class="face back"><h3>Fairness questions</h3><ul><li>Who benefits from the system?</li><li>Who might be harmed?</li><li>Does performance differ across groups?</li><li>Can affected people understand or challenge important decisions?</li></ul></div></div></button>
+    <button class="flip"><div class="flip-in"><div class="face front"><small>MORE DETAIL</small><h3>Ethical design</h3><p>Fairness requires deliberate controls.</p><em>Flip ↻</em></div><div class="face back"><h3>Design responsibilities</h3><ul><li>Review dataset composition.</li><li>Test subgroup outcomes.</li><li>Document limitations.</li><li>Monitor deployed systems because bias can appear after release.</li></ul></div></div></button>
+  </div>
+</section>
+
+<section class="zone" id="accountability">
+  <div class="zone-head">
+    <div><span class="zone-no">08</span><div class="eyebrow">ETHICAL CHALLENGE · RESPONSIBILITY</div><h2>When a system fails, “the computer did it” is not an answer.</h2></div>
+    <p>The lecture asks who is responsible: developers, organisations, or both? Legal responsibility and ethical responsibility can differ, so transparency and accountability must be designed into systems.</p>
+  </div>
+
+  <div class="account-grid">
+    <article><span>DEVELOPER</span><b>Did the implementation ignore known risks?</b></article>
+    <article><span>ORGANISATION</span><b>Were unsafe priorities, policies or deployment choices imposed?</b></article>
+    <article><span>SHARED</span><b>Did multiple decisions across the lifecycle contribute?</b></article>
+    <article><span>LAW vs ETHICS</span><b>Something can be legal and still be irresponsible.</b></article>
+  </div>
+
+  <div class="court-game game-shell">
+    <div class="game-head"><div><span>GAME 8 · ACCOUNTABILITY COURT</span><h3 id="courtPrompt"></h3></div><div class="hud"><span>Judgments <b id="courtScore">0/4</b></span></div></div>
+    <div class="court-card" id="courtCard"></div>
+    <div class="court-options" id="courtOptions"></div>
+    <div class="feedback" id="courtFeedback"></div>
+  </div>
+
+  <div class="final-principle">
+    <b>Secure system design protects technology.</b>
+    <span>Ethical responsibility protects the people affected by that technology.</span>
+  </div>
+</section>
+
+<section class="zone final" id="final">
+  <div class="zone-head">
+    <div><span class="zone-no">09</span><div class="eyebrow">FINAL CHALLENGE</div><h2>Can you design a system that is secure and responsible?</h2></div>
+    <p>Ten questions across CIA, defense in depth, threat modeling, the Equifax and Cambridge Analytica cases, privacy, usability, AI bias and accountability.</p>
+  </div>
+  <div id="finalQuiz" class="final-grid"></div>
+</section>
+</main>
+
+<footer>
+  <b>COMP6013 · WEEK 12</b>
+  <span>Secure System Design and Ethical Responsibilities</span>
+  <span>Secure Systems Lab</span>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
