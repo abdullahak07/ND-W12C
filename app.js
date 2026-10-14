@@ -330,22 +330,33 @@ renderCourt();
 
 // ---------- Final quiz ----------
 const questions=[
- ['Which CIA property protects sensitive information from unauthorised disclosure?',['Confidentiality','Integrity','Availability'],0],
- ['Why use defense in depth?',['So one control failure does not expose everything','To remove all monitoring','To rely on one perfect firewall'],0],
- ['What is the correct threat-model order?',['Assets → threats → vulnerabilities → controls','Controls → assets → threats → vulnerabilities','Threats → controls → assets → passwords'],0],
- ['What root issue does the lecture highlight in the Equifax case?',['Unpatched Apache Struts vulnerability','A stolen printer','No Internet connection'],0],
- ['How many users does the lecture say were affected by Equifax?',['147 million','1.47 million','14,700'],0],
- ['What was the central ethical issue in the Cambridge Analytica case?',['Data misuse without consent','A DDoS attack','A ransomware payment'],0],
- ['Why can strong security create a usability problem?',['Excessive friction can push users toward shortcuts','Security always makes systems faster','Users never value convenience'],0],
- ['How can biased training data affect AI?',['It can produce unfair decisions','It guarantees neutral outcomes','Training data has no influence'],0],
- ['Which statement best describes accountability?',['Developers and organisations may share responsibility','The computer is always responsible','Legal responsibility and ethical responsibility are always identical'],0],
- ['What is the overall Week 12 message?',['Secure design and ethical practice both matter','Security alone answers every ethical question','Ethics replaces technical security'],0]
+ ['Which CIA property protects sensitive information from unauthorised disclosure?',
+  ['Integrity','Availability','Confidentiality','Accountability'],2],
+ ['Why use defense in depth?',
+  ['So one control failure does not expose everything','To remove all monitoring','To rely on one perfect firewall','To replace physical security'],0],
+ ['What is the correct threat-model order?',
+  ['Threats → controls → assets → passwords','Controls → assets → threats → vulnerabilities','Vulnerabilities → controls → assets → threats','Assets → threats → vulnerabilities → controls'],3],
+ ['What root issue does the lecture highlight in the Equifax case?',
+  ['A stolen printer','Unpatched Apache Struts vulnerability','No Internet connection','A weak Wi-Fi password'],1],
+ ['How many users does the lecture say were affected by Equifax?',
+  ['1.47 million','14,700','147 million','87 million'],2],
+ ['What was the central ethical issue in the Cambridge Analytica case?',
+  ['A ransomware payment','A DDoS attack','An unpatched web server','Data misuse without consent'],3],
+ ['Why can strong security create a usability problem?',
+  ['Excessive friction can push users toward shortcuts','Security always makes systems faster','Users never value convenience','More controls always improve user experience'],0],
+ ['How can biased training data affect AI?',
+  ['It guarantees neutral outcomes','Training data has no influence','It can produce unfair decisions','It always improves fairness'],2],
+ ['Which statement best describes accountability?',
+  ['The computer is always responsible','Developers and organisations may share responsibility','Legal responsibility and ethical responsibility are always identical','Only end users are responsible'],1],
+ ['What is the overall Week 12 message?',
+  ['Security alone answers every ethical question','Ethics replaces technical security','Technical controls are enough without accountability','Secure design and ethical practice both matter'],3]
 ];
+
 const qhost=$('#finalQuiz');let answered=0,score=0;
 questions.forEach((q,i)=>{
   const card=document.createElement('article');card.className='final-q';card.innerHTML='<h3>'+(i+1)+'. '+q[0]+'</h3>';
   q[1].forEach((opt,j)=>{
-    const b=document.createElement('button');b.textContent=opt;b.addEventListener('click',()=>{
+    const b=document.createElement('button');b.textContent=String.fromCharCode(65+j)+'. '+opt;b.addEventListener('click',()=>{
       if(card.dataset.done)return;card.dataset.done='1';answered++;const bs=$$('button',card);bs.forEach(x=>x.disabled=true);
       if(j===q[2]){score++;b.classList.add('correct');sfx('correct')}else{b.classList.add('wrong');bs[q[2]].classList.add('correct');sfx('wrong')}
       updateFinal();
